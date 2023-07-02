@@ -1,0 +1,9 @@
+en:
+  site_settings:
+    oauth2_client_enabled: Enable OAuth2 client
+    oauth2_client_azure_enabled: Enable OAuth2 client for Azure AD
+    oauth2_client_azure_sites: Azure AD client enabled website regular expressions, each of them will get matched against the website URL case-insensitively
+    oauth2_client_azure_tenant_id: Azure AD tenant ID
+    oauth2_client_azure_client_id: Azure AD client ID
+    oauth2_client_azure_client_secret: Azure AD client secret
+    oauth2_client_azure_scope: Azure AD scope

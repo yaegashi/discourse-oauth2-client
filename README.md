@@ -1,33 +1,34 @@
-# discourse-private
+# discourse-oauth2-client
 
 ## Introduction
 
-Enable Discourse Onebox access to private web sites protected by Azure App Service (Easy Auth).
+This plugin enables the OAuth2 client capability for Discourse.
+It allows Onebox to fetch content from private websites like ones hosted by Azure App Service with authentication (Easy Auth).
 
-## Development
+## Development in Discourse devcontainer
 
-1. Launch a codespace from https://github.com/discourse/discourse
-2. Clone this repository in the plugins folder:
+1. Launch a devcontainer of https://github.com/discourse/discourse
 
-        git -C plugins clone https://github.com/yaegashi/discourse-private
+2. Clone in the plugins folder:
 
-3. Copy [env.sh](env.sh) and modify it:
+        git -C plugins clone https://github.com/yaegashi/discourse-oauth2-client
 
-        cp plugins/discourse-private/env.sh .
-        vi env.sh
-
-4. Run the following in the first terminal:
+3. Run the following in the first terminal:
 
         ./bin/ember-cli -u
 
-5. Run the following in the second terminal:
+4. Run the following in the second terminal:
 
-        . env.sh
-        bundle exec rails s
+        EXCON_DEBUG=1 bundle exec rails s
 
-6. Run the following in the third terminal:
+5. Run the following in the third terminal:
 
-        . env.sh
-        bundle exec sidekiq
+        EXCON_DEBUG=1 bundle exec sidekiq
 
-7. Open https://localhost:4200 with the web browser
+6. Create an admin account in the fourth terminal ([doc](https://meta.discourse.org/t/create-an-admin-account-from-the-console/17274)):
+
+        bundle exec rake admin:create
+
+7. Open https://localhost:4200 and log in as the admin account.
+
+8. Find discourse-oauth2-client settings in http://localhost:4200/admin/plugins.

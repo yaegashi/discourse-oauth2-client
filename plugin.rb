@@ -1,20 +1,20 @@
 # frozen_string_literal: true
 
-# name: discourse-private
-# about: private
+# name: discourse-oauth2-client
+# about: OAuth2 client capability to enable authorized access to private websites
 # version: 0.0.1
 # authors: yaegashi
-# url: https://yaegashi-blog.sites.banadev.org
+# url: https://github.com/yaegashi/discourse-oauth2-client
+
+enabled_site_setting :oauth2_client_azure_enabled
 
 after_initialize do
   require 'excon'
   require 'oauth2'
+  require_relative 'lib/oauth2_client'
+  require_relative 'lib/excon/oauth2_client'
+  require_relative 'lib/onebox/oauth2_client'
 
-  load File.expand_path('../lib/private.rb', __FILE__)
-  load File.expand_path('../lib/excon/private.rb', __FILE__)
-  load File.expand_path('../lib/onebox/private.rb', __FILE__)
-
-  Excon.defaults[:middlewares] << Excon::Private::Middleware
-
-  Onebox::Helpers.singleton_class.prepend Onebox::Private::Helpers::ClassMethods
+  Excon.defaults[:middlewares] << Excon::OAuth2Client::Middleware
+  Onebox::Helpers.singleton_class.prepend Onebox::OAuth2Client::Helpers::ClassMethods
 end

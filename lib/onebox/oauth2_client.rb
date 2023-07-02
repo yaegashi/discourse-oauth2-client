@@ -1,14 +1,15 @@
 # frozen_string_literal: true
 
-module Onebox::Private
+module Onebox::OAuth2Client
   module Helpers
     module ClassMethods
       def fetch_response(location, redirect_limit: 5, domain: nil, headers: nil, body_cacher: nil)
-        uri = Addressable::URI.parse(location)
-        if Private.private_site?(uri.host)
-          if token = Private.get_access_token
+        site = location.to_s
+        if OAuth2Client.azure_site?(site)
+          if token = OAuth2Client.get_azure_access_token
             headers ||= {}
             headers['Authorization'] = "bearer #{token}"
+            Rails.logger.info "OAuth2Client: Onebox authorized access to Azure site: #{site}"
           end
         end
         super

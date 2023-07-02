@@ -1,0 +1,16 @@
+plugins:
+  oauth2_client_enabled:
+    default: false
+  oauth2_client_azure_enabled:
+    default: false
+  oauth2_client_azure_sites:
+    default: ''
+    type: list
+  oauth2_client_azure_tenant_id:
+    default: ''
+  oauth2_client_azure_client_id:
+    default: ''
+  oauth2_client_azure_client_secret:
+    default: ''
+  oauth2_client_azure_scope:
+    default: ''
